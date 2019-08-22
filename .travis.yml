@@ -1,8 +1,9 @@
+dist: bionic
 language: php
 php:
   - 7.3
-addons:
-  mariadb: 10.3
+services:
+  - mysql
 cache:
   directories:
     - node_modules

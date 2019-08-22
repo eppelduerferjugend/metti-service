@@ -1,0 +1,18 @@
+language: php
+php:
+  - 7.3
+addons:
+  mariadb: 10.3
+cache:
+  directories:
+    - node_modules
+    - vendor
+before_script:
+  - cp .env.travis .env
+  - sudo mysql -e 'CREATE DATABASE testing;'
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan migrate --seed --no-interaction -vvv
+
+script:
+  - vendor/bin/phpunit
